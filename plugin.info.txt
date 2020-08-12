@@ -1,0 +1,7 @@
+base   diagramsnet
+author todag
+email  
+date   2020-08-12
+name   diagrams.net integration plugin
+desc   diagrams.net integration
+url    https://www.dokuwiki.org/plugin:diagramsnet
