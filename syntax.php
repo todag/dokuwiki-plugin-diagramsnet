@@ -100,11 +100,13 @@ class syntax_plugin_diagramsnet extends DokuWiki_Syntax_Plugin
 	    if(!file_exists(mediaFN($data['src']))) {
 	        $data['title'] = 'Click to create new diagram file ['.$data['src'].']';                
 	    }
+
+	    $anonymize_xml = $this->getConf('anonymize_xml');
     	     
 	    $attr = array(
                 'class'   => 'media',
 		'id'      => $data['src'],		
-		'onclick' => "diagramsnetEdit(this,'$externalUrl','".$data['src']."')",
+		'onclick' => "diagramsnetEdit(this,'$externalUrl','".$data['src']."', $anonymize_xml)",
 		'style'   => 'cursor:pointer;',
                 'src'     => ml($data['src']),
 	    	'width'   => $data['width'],

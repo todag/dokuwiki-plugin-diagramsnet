@@ -4,7 +4,7 @@
 // @author https://github.com/todag
  
 
-var diagramsnetEdit = function(image, diagramsnetUrl , data)
+var diagramsnetEdit = function(image, diagramsnetUrl , data, anonymize_xml)
 {        
     var iframe = document.createElement('iframe');
     iframe.setAttribute('frameborder', '0');
@@ -49,8 +49,12 @@ var diagramsnetEdit = function(image, diagramsnetUrl , data)
 	    // Received if the user clicks save. This will send a request to export the diagram
 	    else if (msg.event == 'save')
 	    {                
-                alert(msg.xml);
-		iframe.contentWindow.postMessage(JSON.stringify({action: 'export', format: 'xmlpng', xml: msg.xml, spin: 'Updating page'}), '*');
+		xmlData = msg.xml;
+		if(anonymize_xml) {
+		    xmlData = xmlData.replace(new RegExp('^<mxfile host=".*?"'), '<mxfile host="hostname"');
+		    xmlData = xmlData.replace(new RegExp('agent=".*?"'), 'agent="anonymous browser agent"');
+		}   
+		iframe.contentWindow.postMessage(JSON.stringify({action: 'export', format: 'xmlpng', xml: xmlData, spin: 'Updating page'}), '*');
 	    }
 	    // This will capture the export event called above
             else if (msg.event == 'export')

@@ -6,3 +6,4 @@ $meta['viewer_parameters'] = array('string');
 $meta['external_url'] = array('string');
 $meta['file_match_suffix'] = array('string');
 $meta['enable_attic'] = array('onoff');
+$meta['anonymize_xml'] = array('onoff');
