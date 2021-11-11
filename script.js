@@ -64,7 +64,14 @@ var diagramsnetEdit = function(image, diagramsnetUrl , data, anonymize_xml) {
 	    // If save failed, alert with error message.		        			
 	    if (result.message == 'success') {			    
               image.setAttribute('src', msg.data);
-              alert('File saved to Wiki successfully!');
+	      if(anonymize_xml) {
+		var save_msg = 'Diagram saved successfully! (anonymized xml)';
+	      }		    
+              else {
+		var save_msg = 'Diagram saved successfully!';
+	      }
+	      iframe.contentWindow.postMessage(JSON.stringify({action: 'status', message: save_msg, modified: false}), '*');
+              alert(save_msg);
 	    }
 	    else {
 	      alert("An error occured while saving the file to the Wiki. You can export and save the file locally.\n Error message: " + result.message);
