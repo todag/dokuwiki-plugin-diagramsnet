@@ -45,7 +45,7 @@ var diagramsnetEdit = function(image, diagramsnetUrl , data, anonymize_xml) {
 	    xmlData = xmlData.replace(new RegExp('^<mxfile host=".*?"'), '<mxfile host="hostname"');
 	    xmlData = xmlData.replace(new RegExp('agent=".*?"'), 'agent="anonymous browser agent"');
 	  }   
-	  iframe.contentWindow.postMessage(JSON.stringify({action: 'export', format: 'xmlpng', xml: xmlData, spin: 'Updating page'}), '*');
+	  iframe.contentWindow.postMessage(JSON.stringify({action: 'export', format: 'xmlpng', xml: xmlData, spinKey: 'saving'}), '*');
       }
       // This will capture the export event called above
       else if (msg.event == 'export') {
